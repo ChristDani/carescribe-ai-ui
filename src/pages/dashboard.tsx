@@ -41,7 +41,7 @@ const DashboardPage = () => {
                 </span>
             </div>
             <div className="flex items-center card mt-4 p-4 rounded bg-gray-50 shadow">
-                <NoteList patient={selectedPatient} />
+                <NoteList patient={selectedPatient} patients={patients} />
             </div>
             <NoteForm open={isNoteFormOpen} onClose={handleNoteFormClose} patients={patients} />
         </>

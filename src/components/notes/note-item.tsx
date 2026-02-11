@@ -1,20 +1,20 @@
 import { FC, useEffect, useState } from "react";
 import { Note } from "../../types/note";
 import { Patient } from "../../types/patient";
-import { getPatientsById } from "../../api/patient.api";
 import NoteDetail from "./note-detail";
 
 interface NoteItemProps {
     note: Note;
+    patients: Patient[];
 }
 
-const NoteItem: FC<NoteItemProps> = ({ note }) => {
+const NoteItem: FC<NoteItemProps> = ({ note, patients }) => {
     const [patient, setPatient] = useState<Patient>({} as Patient);
     const [detailOpen, setDetailOpen] = useState(false);
 
     const loadPatient = async () => {
-        const result = await getPatientsById(String(note.patient));
-        setPatient(result.data[0]);
+        const result = patients.filter((p) => p.id === String(note.patient));
+        setPatient(result[0]);
     }
 
     const handleOpenDetail = () => {

@@ -11,28 +11,37 @@ interface NotesResponse {
 export interface CreateNoteParams {
   nt_patient_id: string;
   nt_raw_input: string;
-  nt_transcription?: string;
-  nt_ai_summary?: string;
-  nt_audio_url?: string;
+  nt_audio: File | null;
 }
 
 export const InitialValuesCreateNote: CreateNoteParams = {
   nt_patient_id: "",
   nt_raw_input: "",
-  nt_transcription: "",
-  nt_ai_summary: "",
-  nt_audio_url: "",
+  nt_audio: null,
 };
 
 export const createNote = async (
   params: CreateNoteParams,
 ): Promise<NotesResponse> => {
   try {
+    const formData = new FormData();
+
+    formData.append("nt_patient_id", params.nt_patient_id);
+    formData.append("nt_raw_input", params.nt_raw_input);
+    if (params.nt_audio) {
+      formData.append("nt_audio", params.nt_audio);
+    }
+
     const { data } = await api.post<{
       data: any;
       success: boolean;
       message?: string;
-    }>("/notes/setNotes", params);
+    }>("/notes/setNotes", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
     return {
       success: data.success,
       data: getNoteAdapter(data.data),

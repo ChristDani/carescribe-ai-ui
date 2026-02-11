@@ -52,7 +52,7 @@ const ModalBox: FC<ModalBoxProps> = ({ title, onClose, children, primaryBtn, sec
                                     key={index}
                                     onClick={btn.onClick}
                                     disabled={btn.disabled}
-                                    className={`px-4 py-2 rounded ${btn.disabled ? 'bg-gray-300 cursor-not-allowed' : 'bg-gray-200 hover:bg-gray-300'}`}
+                                    className={`px-4 py-2 rounded ${btn.disabled ? 'bg-gray-300 cursor-not-allowed' : 'bg-gray-200 hover:bg-gray-300'} ${btn.disabled ? 'cursor-not-allowed' : 'cursor-pointer'}`}
                                 >
                                     {btn.text}
                                 </button>
@@ -61,7 +61,7 @@ const ModalBox: FC<ModalBoxProps> = ({ title, onClose, children, primaryBtn, sec
                                 <button
                                     onClick={primaryBtn.onClick}
                                     disabled={primaryBtn.disabled}
-                                    className={`px-4 py-2 rounded ${primaryBtn.disabled ? 'bg-blue-300 cursor-not-allowed' : 'bg-blue-500  hover:bg-blue-600'}`}
+                                    className={`px-4 py-2 rounded ${primaryBtn.disabled ? 'bg-blue-300 cursor-not-allowed' : 'bg-blue-500  hover:bg-blue-600'} ${primaryBtn.disabled ? 'cursor-not-allowed' : 'cursor-pointer'}`}
                                 >
                                     {primaryBtn.text}
                                 </button>
