@@ -29,7 +29,7 @@ const NoteItem: FC<NoteItemProps> = ({ note, patients }) => {
         <>
             <div className="p-4 border rounded mb-2 w-full cursor-pointer hover:bg-gray-200" onClick={handleOpenDetail}>
                 <h3 className="text-xl font-semibold mb-2">{patient.fullName} - {note.createdAt}</h3>
-                <p>{note.rawInput}</p>
+                <p className="line-clamp-2">{note.rawInput}</p>
             </div>
             <NoteDetail note={note} patient={patient} open={detailOpen} onClose={handleOpenDetail} />
         </>

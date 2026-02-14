@@ -2,6 +2,7 @@ import { FC } from "react";
 import ModalBase from "../modals/modal-base"
 import { Note } from "../../types/note";
 import { Patient } from "../../types/patient";
+import { env } from "../../env";
 
 interface NoteDetailProps {
     note: Note;
@@ -11,11 +12,12 @@ interface NoteDetailProps {
 }
 
 const NoteDetail: FC<NoteDetailProps> = ({ open, onClose, note, patient }) => {
+    const baseApiUrl = env.Api_Url
     return (
         <ModalBase open={open} onClose={onClose} title="Detalle de nota">
-            <div className="grid grid-cols-2 gap-6">
+            <div className="flex h-[60vh] overflow-hidden">
                 {/* Columna de datos del paciente */}
-                <div className="border-r pr-6">
+                <div className="border-r w-auto pr-4">
                     <h3 className="text-lg font-semibold mb-4">Datos del Paciente</h3>
                     <div className="space-y-3">
                         <p><strong>Nombres:</strong> {patient.firstName}</p>
@@ -27,7 +29,7 @@ const NoteDetail: FC<NoteDetailProps> = ({ open, onClose, note, patient }) => {
                 </div>
 
                 {/* Columna de datos de la nota */}
-                <div className="pl-6">
+                <div className="overflow-y-auto pl-4 w-auto max-w-lg">
                     <h3 className="text-lg font-semibold mb-4">Datos de la Nota</h3>
                     <div className="space-y-3">
                         <p><strong>Fecha:</strong> {note.createdAt}</p>
@@ -38,7 +40,7 @@ const NoteDetail: FC<NoteDetailProps> = ({ open, onClose, note, patient }) => {
                             <div>
                                 <p><strong>Audio:</strong></p>
                                 <audio controls className="w-full mt-2">
-                                    <source src={note.audioUrl} type="audio/mpeg" />
+                                    <source src={`${baseApiUrl}${note.audioUrl}`} type="audio/mpeg" />
                                     Tu navegador no soporta el elemento de audio.
                                 </audio>
                             </div>

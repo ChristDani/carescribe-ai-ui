@@ -56,7 +56,7 @@ const NoteForm: React.FC<NoteFormProps> = ({ open, onClose, patients }) => {
     const primaryBtn = {
         text: "Guardar",
         onClick: handleSubmit,
-        disabled: !params.nt_raw_input || !selectedPatient.id,
+        disabled: (!params.nt_raw_input || !params.nt_audio) && !selectedPatient.id,
     };
 
     const secondaryBtns = [
