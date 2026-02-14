@@ -49,6 +49,8 @@ const NoteForm: React.FC<NoteFormProps> = ({ open, onClose, patients }) => {
             handleClear();
             onClose();
         } else {
+            handleClear();
+            onClose();
             alert("Failed to create note: " + result.message);
         }
     };
