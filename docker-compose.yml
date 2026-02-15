@@ -13,6 +13,8 @@ services:
       resources:
         limits:
           memory: 400M
+        reservations:
+          memory: 256M
     environment:
       - DOMAIN=54.146.18.239
       - EMAIL=
