@@ -8,6 +8,11 @@ services:
       - ./letsencrypt:/etc/letsencrypt
       - ./certbot-www:/var/www/certbot
     restart: unless-stopped
+    mem_limit: 400m
+    deploy:
+      resources:
+        limits:
+          memory: 400M
     environment:
       - DOMAIN=54.146.18.239
       - EMAIL=
